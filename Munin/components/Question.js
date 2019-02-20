@@ -17,7 +17,7 @@ export default class Question extends Component{
     render(){
         return(
             <View>
-                <Text>Question {this.props.counter}: Question loaded properly</Text>
+                <Text>Question {this.props.counter}:  {this.props.question.q}</Text>
             </View>
         )
     }

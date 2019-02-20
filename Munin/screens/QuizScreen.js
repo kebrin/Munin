@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, AsyncStorage} from 'react-native';
 import Question from "../components/Question";
+import {questions} from "../assets/questions";
 
 export default class QuizScreen extends Component {
     questionList = [];
@@ -38,7 +39,7 @@ export default class QuizScreen extends Component {
         return(
             <View>
                 <Text>Hello World!</Text>
-                <Question counter={this.state.counter}></Question>
+                <Question counter={this.state.counter} question = {questions.question[this.state.counter]}></Question>
             </View>
         );
     }
