@@ -3,58 +3,50 @@ import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import MapScreen from '../screens/MapScreen';
+import UserScreen from '../screens/UserScreen';
+import HighscoreScreen from '../screens/HighscoreScreen';
 
+
+// Home screen -> Map
 const HomeStack = createStackNavigator({
-  Home: HomeScreen,
+  Home: MapScreen,
 });
 
 HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+  tabBarLabel: 'Kart',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
-    />
+    <TabBarIcon focused={focused} name={'md-map'} />
   ),
 };
 
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
+
+// User screen -> profile/info
+const UserStack = createStackNavigator({
+  User: UserScreen,
 });
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+UserStack.navigationOptions = {
+  tabBarLabel: 'Bruker',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
-    />
+    <TabBarIcon focused={focused} name={'md-person'} />
   ),
 };
 
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
+// Highscore -> list
+const HighscoreStack = createStackNavigator({
+  Highscore: HighscoreScreen,
 });
 
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
+HighscoreStack.navigationOptions = {
+  tabBarLabel: 'Toppscore',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
-    />
+    <TabBarIcon focused={focused} name={'md-podium'} />
   ),
 };
 
 export default createBottomTabNavigator({
   HomeStack,
-  LinksStack,
-  SettingsStack,
+  UserStack,
+  HighscoreStack,
 });
