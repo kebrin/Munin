@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { WebBrowser } from 'expo';
+import { WebBrowser, Audio } from 'expo';
 
 import { MonoText } from '../components/StyledText';
 
@@ -16,6 +16,18 @@ export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
+
+  async componentDidMount()
+  {
+    const soundObject = new Audio.Sound();
+    try {
+      await soundObject.loadAsync(require('../assets/sounds/hello.mp3'));
+      await soundObject.playAsync();
+      // Your sound is playing!
+    } catch (error) {
+      // An error occurred!
+    }
+  }
 
   render() {
     return (
