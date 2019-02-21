@@ -1,5 +1,6 @@
 import React from 'react';
 import { vw, vh, vmin, vmax } from 'react-native-expo-viewport-units'
+import Modal from 'react-native-modal'
 import {
   Image,
   ImageBackground,
@@ -9,10 +10,52 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Modal,
   TouchableHighlight
 } from 'react-native';
 
+const ProfileImg = ({size}) => (
+  <ImageBackground
+    source={{uri: 'https://media.gettyimages.com/photos/1960s-man-34-profile-picture-id538634256'}}
+    style={{
+      width: size,
+      height: size,
+      borderRadius: size,
+      borderWidth: 20,
+      borderColor: 'seagreen',
+      overflow: 'hidden',
+      marginTop: 100,
+    }}
+  />
+)
+
+const CustomModal = ({show, dismiss, data}) => (
+  <Modal
+    isVisible={show}
+    animationIn="slideInUp"
+    animationOut="zoomOutUp"
+    animationInTiming={400}
+    animationOutTiming={1000}
+    transparent={true}
+    backdropColor='gold'
+    backdropOpacity={.5}
+    backdropTransitionInTiming={1000}
+    backdropTransitionOutTiming={500}
+    onBackdropPress={dismiss}
+    onBackButtonPress={dismiss}
+    onSwipe={dismiss}
+    swipeDirection="up"
+    >
+    <View style={{
+      alignSelf: 'stretch',
+      alignItems: 'center',
+      backgroundColor: 'white',
+      height: 500
+    }}>
+      <Text>{data.title}</Text>
+      <Text>Swipe up to close ☝🏾</Text>
+    </View>
+  </Modal>
+)
 
 const Button = ({title, color, handleChange}) => (
   <TouchableOpacity style={{
@@ -49,65 +92,48 @@ export default class UserScreen extends React.Component {
     }
   }
 
-  handleResultsClicked = (val) => {
-    this.setState({resultsClicked: val})
-  }
+  dismissResults = () => { this.setState({ resultsClicked: false })}
+  toggleResult = () => { this.setState({ resultsClicked: !this.state.resultsClicked})}
+
+  dismissQuiz = () => { this.setState({ quizzesClicked: false })}
+  toggleQuiz = () => { this.setState({ quizzesClicked: !this.state.quizzesClicked})}
 
   render() {
-    const PROFILE_SIZE = vw(70)
     return (
       <View style={{
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'gold',
         flex: 1,
+        flexDirection: 'column'
       }}>
-        <ImageBackground
-          source={{uri: 'https://media.istockphoto.com/photos/bald-man-profile-picture-id509728759'}}
-          style={{
-            width: PROFILE_SIZE,
-            height: PROFILE_SIZE,
-            borderRadius: PROFILE_SIZE,
-            borderWidth: 20,
-            borderColor: 'seagreen',
-            overflow: 'hidden',
-            marginTop: 100,
-          }}
-        />
+        <ProfileImg size={vw(70)} />
+        <CustomModal
+          show={this.state.resultsClicked}
+          dismiss={this.dismissResults}
+          data={{
+            title: 'Results!'
+          }}/>
+        <CustomModal
+          show={this.state.quizzesClicked}
+          dismiss={this.dismissQuiz}
+          data={{
+            title: 'Quizzer i nærheten :)'
+          }}/>
         <View style={{
           flex: 1,
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-          <Button title={'Mine resultater!'} color={'coral'}
-            handleChange={this.handleResultsClicked}/>
-          {/* <Button title={'Quizzer i nærheten 🤨'} color={'plum'} /> */}
-          <Modal animationType="slide"
-            transparent={true}
-            visible={this.state.resultsClicked}
-            onRequestClose={() => {}}
-            >
-            <View style={{
-              flex: 1,
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-              width: vw(100),
-              height: 300
-            }}>
-                <TouchableHighlight
-                  onPress={() => {this.handleResultsClicked(false)}}
-                  style={{
-                    width: 100,
-                    height: 100,
-                    backgroundColor: 'red'
-                  }}
-                  >
-                  <Text>Hide Modal</Text>
-                </TouchableHighlight>
-            </View>
-          </Modal>
+          <Button
+            title={'Mine resultater!'}
+            color={'coral'}
+            handleChange={this.toggleResult}/>
+          <Button
+            title={'Quizzer i nærheten 🤨'}
+            color={'plum'} 
+            handleChange={this.toggleQuiz}/>
         </View>
       </View>
     )
