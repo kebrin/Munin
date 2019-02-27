@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Alert } from 'react-native'
 import { MapView, Location, Permissions } from 'expo'
 import { mapStyle } from "../assets/map-style";
 import { quizzes } from "../assets/quizzes";
@@ -9,32 +9,57 @@ export class Map extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      location: null
+      location: {
+          coords: {
+              longitude: 10.385370,
+              latitude: 63.428898
+          }
+      },
+      permission: null
     };
+
   }
 
   componentWillMount() {
-    setInterval(this._getLocationAsync, 1000)
+   this._getPermission()
+      setInterval(this._getLocationAsync, 1000)
   }
 
+  _getPermission = async () => {
+      let { status } = await Permissions.askAsync(Permissions.LOCATION);
+      if (status !== 'granted') {
+          this.setState({
+              errorMessage: 'Permission to access location was denied',
+          });
+      } else {
+          this.setState({
+              permission: status
+          })
+      }
+  };
+
   _getLocationAsync = async () => {
-    let { status } = await Permissions.askAsync(Permissions.LOCATION);
-    if (status !== 'granted') {
-      this.setState({
-        errorMessage: 'Permission to access location was denied',
-      });
-    }
-    let location = await Location.getCurrentPositionAsync({accuracy: Location.Accuracy.Highest});
-    this.setState({ location });
+      if (this.state.permission === 'granted') {
+          let location = await Location.getCurrentPositionAsync({accuracy: Location.Accuracy.Highest});
+          this.setState({ location });
+      }
+  };
+
+  markerPressed = e => {
+      console.log(e);
+      let data = e.nativeEvent
+        Alert.alert('Koordinater:', data.coordinate.latitude.toString() + " " + data.coordinate.longitude.toString())
   };
 
   renderMarkers(){
     return (
       quizzes.map((quiz, idx) =>
         <MapView.Marker
+          id={quiz.id}
           key={idx}
           coordinate={{latitude: quiz.latitude, longitude: quiz.longitude}}
           image={require('../assets/images/quiz.png')}
+          onPress={this.markerPressed}
         />
       )
     )
@@ -53,12 +78,15 @@ export class Map extends React.Component {
           latitudeDelta: 0.01,
           longitudeDelta: 0.01
         }}
+        provider={'google'}
         customMapStyle={mapStyle}
-        minZoomLevel={17}
-        maxZoomLevel={17}
+        zoomEnabled={false}
+        rotateEnabled={false}
+        minZoomLevel={17} //
+        maxZoomLevel={17} // 17 works fine
         showsUserLocation={true}
         scrollEnabled={false}
-        animateToViewingAngle={true}
+        moveOnMarkerPress={false}
       >
         {this.renderMarkers()}
       </MapView>
