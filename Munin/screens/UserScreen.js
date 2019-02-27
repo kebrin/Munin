@@ -15,7 +15,8 @@ import {
 
 const ProfileImg = ({size}) => (
   <ImageBackground
-    source={{uri: 'https://media.gettyimages.com/photos/1960s-man-34-profile-picture-id538634256'}}
+    source={{uri: 'https://i.imgur.com/itElfV3.jpg'}}
+    resizeMode='contain'
     style={{
       width: size,
       height: size,
@@ -24,19 +25,30 @@ const ProfileImg = ({size}) => (
       borderColor: 'seagreen',
       overflow: 'hidden',
       marginTop: 100,
+      marginRight: 20,
     }}
   />
 )
 
-const CustomModal = ({show, dismiss, data}) => (
-  <Modal
+const PositionText = ({top, text}) => (
+  <Text style={{
+    top: top ? 0 : 'auto',
+    bottom: top ? 'auto': 0,
+    position: 'absolute',
+    fontSize: 20,
+    fontWeight: 'bold'
+  }}>{text}</Text>
+)
+
+const CustomModal = ({show, dismiss, innercomponent}) => (
+  <Modal children={innercomponent}
     isVisible={show}
     animationIn="slideInUp"
     animationOut="zoomOutUp"
     animationInTiming={400}
     animationOutTiming={1000}
     transparent={true}
-    backdropColor='gold'
+    backdropColor='black'
     backdropOpacity={.5}
     backdropTransitionInTiming={1000}
     backdropTransitionOutTiming={500}
@@ -45,16 +57,20 @@ const CustomModal = ({show, dismiss, data}) => (
     onSwipe={dismiss}
     swipeDirection="up"
     >
-    <View style={{
-      alignSelf: 'stretch',
-      alignItems: 'center',
-      backgroundColor: 'white',
-      height: 500
-    }}>
-      <Text>{data.title}</Text>
-      <Text>Swipe up to close ☝🏾</Text>
-    </View>
   </Modal>
+)
+
+const ModalContent = ({title}) => (
+  <View style={{
+    alignSelf: 'stretch',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    backgroundColor: 'white',
+    height: 500
+  }}>
+    <PositionText top={true} text={title} />
+    <PositionText top={false} text='Swipe up to close 🙃☝' />
+  </View>
 )
 
 const Button = ({title, color, handleChange}) => (
@@ -73,6 +89,18 @@ const Button = ({title, color, handleChange}) => (
     </Text>
   </TouchableOpacity>
 )
+
+const BigText = ({text}) => (
+  <Text style={{
+    bottom: 0,
+    position: 'absolute',
+    fontSize: 20,
+    fontWeight: 'bold'
+  }}>
+    {text}
+  </Text>
+)
+
 
 export default class UserScreen extends React.Component {
   state = {
@@ -98,6 +126,7 @@ export default class UserScreen extends React.Component {
   dismissQuiz = () => { this.setState({ quizzesClicked: false })}
   toggleQuiz = () => { this.setState({ quizzesClicked: !this.state.quizzesClicked})}
 
+
   render() {
     return (
       <View style={{
@@ -111,15 +140,11 @@ export default class UserScreen extends React.Component {
         <CustomModal
           show={this.state.resultsClicked}
           dismiss={this.dismissResults}
-          data={{
-            title: 'Results!'
-          }}/>
+          innercomponent={<ModalContent title='Results!'/>}/>
         <CustomModal
           show={this.state.quizzesClicked}
           dismiss={this.dismissQuiz}
-          data={{
-            title: 'Quizzer i nærheten :)'
-          }}/>
+          innercomponent={<ModalContent title='Quizzer i nærheten!'/>}/>
         <View style={{
           flex: 1,
           flexDirection: 'column',
