@@ -15,13 +15,13 @@ export class Map extends React.Component {
               latitude: 63.428898
           }
       },
+      modalVisible: false,
       permission: null
     };
-
   }
 
   componentWillMount() {
-   this._getPermission()
+    this._getPermission()
       setInterval(this._getLocationAsync, 1000)
   }
 
@@ -46,16 +46,27 @@ export class Map extends React.Component {
   };
 
   markerPressed = e => {
-      console.log(e);
-      let data = e.nativeEvent
-        Alert.alert('Koordinater:', data.coordinate.latitude.toString() + " " + data.coordinate.longitude.toString())
+      const haversine = require('haversine')
+      // check if user is withing range
+      let data = e.nativeEvent;
+      let start = this.state.location.coords;
+      let end = data.coordinate;
+      console.log(this.state.location.coords)
+      console.log(data.coordinate)
+
+      if (haversine(start, end, {unit: 'meter', threshold: 50})) {
+          Alert.alert(data.id, data.coordinate.latitude.toString() + " " + data.coordinate.longitude.toString())
+      } else {
+          Alert.alert("Out of range :(", "Please walk your sorry ass over there")
+      }
+      // this.setState({modalVisible: true})
   };
 
   renderMarkers(){
     return (
       quizzes.map((quiz, idx) =>
         <MapView.Marker
-          id={quiz.id}
+          identifier={quiz.id.toString()}
           key={idx}
           coordinate={{latitude: quiz.latitude, longitude: quiz.longitude}}
           image={require('../assets/images/quiz.png')}
@@ -82,8 +93,8 @@ export class Map extends React.Component {
         customMapStyle={mapStyle}
         zoomEnabled={false}
         rotateEnabled={false}
-        minZoomLevel={17} //
-        maxZoomLevel={17} // 17 works fine
+        minZoomLevel={14} //
+        maxZoomLevel={14} // 17 works fine
         showsUserLocation={true}
         scrollEnabled={false}
         moveOnMarkerPress={false}
