@@ -17,15 +17,6 @@ const styles = StyleSheet.create({
   }
 })
 
-const BigText = ({style, text}) => (
-    <Text style={{
-      fontSize: 20,
-      fontWeight: 'bold'
-    }}>
-      {text}
-    </Text>
-)
-
 export default class HighscoreScreen extends React.Component {
   state = {
     scores: [
