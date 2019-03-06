@@ -9,8 +9,6 @@ export default class QuizScreen extends Component {
         super(props);
         this.state = {
             quizId: 0,
-            quizComplete: false,
-            score: 0
         }
     }
 
@@ -42,7 +40,7 @@ export default class QuizScreen extends Component {
         return(
             <View>
                 <Text>Hello World!</Text>
-                <Question question = {quizzes[0].questions}></Question>
+                <Question question = {quizzes[this.state.quizId].questions}></Question>
             </View>
         );
     }

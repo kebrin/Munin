@@ -30,14 +30,16 @@ export default class Question extends Component{
 
 
 
-
+    //BUtton handler, check for correct answers
     checkAnswer (a) {
         if (a == this.props.question[this.state.counter].a[0]){
             Alert.alert(
                 "Result",
                 "A WINNER IS YOU",
                 [
-                    {text: 'OK', onPress: () => this.setState({counter: this.state.counter +1, score: this.state.score + 1})}
+                    {text: 'OK', onPress: () => this.setState(
+                        {counter: this.state.counter +1, score: this.state.score + 1}
+                        )}
                 ]
             )
         } else {
