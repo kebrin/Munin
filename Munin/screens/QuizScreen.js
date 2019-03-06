@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
 import {View, Text, AsyncStorage} from 'react-native';
 import Question from "../components/Question";
-import {questions} from "../assets/questions";
+import {quizzes} from "../assets/quizzes";
 
 export default class QuizScreen extends Component {
     questionList = [];
     constructor(props) {
         super(props);
         this.state = {
-            counter: 0
+            quizId: 0,
+            quizComplete: false,
+            score: 0
         }
     }
 
@@ -26,6 +28,7 @@ export default class QuizScreen extends Component {
         }
     };
 
+
     componentDidMount() {
         //this._retrieveData();
     }
@@ -39,7 +42,7 @@ export default class QuizScreen extends Component {
         return(
             <View>
                 <Text>Hello World!</Text>
-                <Question counter={this.state.counter} question = {questions.question[this.state.counter]}></Question>
+                <Question question = {quizzes[0].questions}></Question>
             </View>
         );
     }
