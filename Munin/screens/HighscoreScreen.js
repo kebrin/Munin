@@ -1,4 +1,5 @@
 import React from 'react';
+import Colors from '../constants/Colors.js'
 import {
   Image,
   Platform,
@@ -55,6 +56,7 @@ export default class HighscoreScreen extends React.Component {
     return (
       <ScrollView style={{
         flex: 1,
+        backgroundColor: Colors.muninLightBrown,
       }}>
         <Text>
           {this.state.title}
@@ -71,11 +73,12 @@ export default class HighscoreScreen extends React.Component {
                       height: 'auto',
                       fontWeight: 'bold',
                       fontSize: 15,
-                      backgroundColor: `rgb(0,${(200-(128/this.state.scores.length)*idx)},${(40/this.state.scores.length)*idx})`,
+                      backgroundColor: Colors.muninBeige,
+                      //backgroundColor: `rgb(0,${(200-(128/this.state.scores.length)*idx)},${(40/this.state.scores.length)*idx})`,
                       marginBottom: 5,
                       marginRight: 5,
                       marginLeft: 5,
-                      padding: 10
+                      padding: 5
                     }}
               >
                 <Text style={{
