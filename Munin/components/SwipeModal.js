@@ -15,8 +15,6 @@ export const SwipeModal = ({show, dismiss, innercomponent}) => (
     backdropTransitionOutTiming={500}
     onBackdropPress={dismiss}
     onBackButtonPress={dismiss}
-    onSwipe={dismiss}
-    swipeDirection="up"
     >
   </Modal>
 )
