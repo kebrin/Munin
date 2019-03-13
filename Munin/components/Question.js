@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {View, Text, Button, Alert} from 'react-native';
-import {quizzes} from "../assets/quizzes";
 
 export default class Question extends Component{
     constructor(props) {
@@ -10,22 +9,9 @@ export default class Question extends Component{
         }
     }
 
-
-
-
-     quizProgress(state){
-        if(!this.state.completed){
-            return
-        } else {
-            return <EndScreen score = {this.state.score}/>
-        }
-    }
-
-
-
-    //BUtton handler, check for correct answers
+    //Button handler, check for correct answers
     checkAnswer (a) {
-        if (a == this.props.question.a[0]){
+        if (a === this.props.question.a[0]){
             Alert.alert(
                 "Result",
                 "A WINNER IS YOU",
