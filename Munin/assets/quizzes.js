@@ -1,8 +1,8 @@
 export const quizzes = [
     {
         "id": 0,
-        "longitude":10.38536, //endre til Hellas?
-        "latitude":63.42889,
+        "longitude":37.400371,
+        "latitude":25.266913,
         "questions": [
             {
                 "q": "Delos used to be known as \"Adelos\", because:",
@@ -19,7 +19,7 @@ export const quizzes = [
                     "To spend the night on Delos",
                     "To be born or to die on Delos"
                 ]
-            }
+            },
             {
                 "q": "Apollo and Artemis were the children of:",
                 "a": [
@@ -27,7 +27,7 @@ export const quizzes = [
                     "Poseidon and Nefertiti",
                     "Zeus and Hera"
                 ]
-            }
+            },
             {
                 "q": "The symbol of Apollo was:",
                 "a": [
@@ -35,7 +35,7 @@ export const quizzes = [
                     "The thunder",
                     "The Myrtle tree"
                 ]
-            }
+            },
             {
                 "q": "Delos was destroyed in 88BC:",
                 "a": [
@@ -48,8 +48,8 @@ export const quizzes = [
     },
     {
         "id": 1,
-        "longitude":10.395896, //endre til Irak?
-        "latitude":63.426904,
+        "longitude":36.357859, //endre til Irak?
+        "latitude":43.152810,
         "questions": [
             {
                 "q": "Assyria, was a",
@@ -66,7 +66,7 @@ export const quizzes = [
                     "Tutankhamon",
                     "Salgon"
                 ]
-            }
+            },
             {
                 "q": "Niniveh was the capital of:",
                 "a": [
@@ -74,7 +74,7 @@ export const quizzes = [
                     "The Persian empire",
                     "Akkadian empire"
                 ]
-            }
+            },
             {
                 "q": "Cuneiform script",
                 "a": [
@@ -82,7 +82,7 @@ export const quizzes = [
                     "is the idiom the Assyrians spoke",
                     "is the accounting system of ancient Assyrians"
                 ]
-            }
+            },
             {
                 "q": "March 2015 the Islamic state destroyed",
                 "a": [
