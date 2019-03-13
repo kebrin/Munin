@@ -1,14 +1,12 @@
 import React from 'react';
-import { vw, vh } from 'react-native-expo-viewport-units'
-// import Modal from 'react-native-modal'
 import { Button, SwipeModal, ModalContent } from '../components'
 
-import { ImageBackground, View } from 'react-native';
+import { Image, View } from 'react-native';
 
 const ProfileImg = ({size}) => (
-  <ImageBackground
+  <Image
     source={{uri: 'https://i.imgur.com/itElfV3.jpg'}}
-    resizeMode='contain'
+    resizeMode='cover'
     style={{
       width: size,
       height: size,
@@ -17,7 +15,6 @@ const ProfileImg = ({size}) => (
       borderColor: 'seagreen',
       overflow: 'hidden',
       marginTop: 100,
-      marginRight: 20,
     }}
   />
 )
@@ -50,12 +47,11 @@ export default class UserScreen extends React.Component {
     return (
       <View style={{
         alignItems: 'center',
-        justifyContent: 'center',
         backgroundColor: 'gold',
         flex: 1,
         flexDirection: 'column'
       }}>
-        <ProfileImg size={vw(70)} />
+        <ProfileImg size={300} />
         <SwipeModal
           show={this.state.resultsClicked}
           dismiss={this.dismissResults}
