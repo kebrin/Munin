@@ -3,6 +3,10 @@ import { View, Text, Alert } from 'react-native'
 import { MapView, Location, Permissions } from 'expo'
 import { mapStyle } from "../assets/map-style";
 import { quizzes } from "../assets/quizzes";
+import {SwipeModal} from "./SwipeModal";
+import {ModalContent} from "./ModalContent";
+
+const haversine = require('haversine')
 
 export class Map extends React.Component {
 
@@ -16,8 +20,10 @@ export class Map extends React.Component {
           }
       },
       modalVisible: false,
-      permission: null
+      permission: null,
+      activeQuiz: 0
     };
+    this.hideModal = this.hideModal.bind(this);
   }
 
   componentWillMount() {
@@ -46,7 +52,6 @@ export class Map extends React.Component {
   };
 
   markerPressed = e => {
-      const haversine = require('haversine')
       // check if user is withing range
       let data = e.nativeEvent;
       let start = this.state.location.coords;
@@ -55,11 +60,12 @@ export class Map extends React.Component {
       console.log(data.coordinate)
 
       if (haversine(start, end, {unit: 'meter', threshold: 50})) {
-          Alert.alert(data.id, data.coordinate.latitude.toString() + " " + data.coordinate.longitude.toString())
+          // Alert.alert(data.id, data.coordinate.latitude.toString() + " " + data.coordinate.longitude.toString())
+          this.setState({activeQuiz: data.id})
+          this.setState({modalVisible: true})
       } else {
-          Alert.alert("Out of range :(", "Please walk your sorry ass over there")
+          Alert.alert("Utenfor rekkevidde :(", "Du må være maks 50 meter unna. Du er nå " + haversine(start, end, {unit: 'meter'}).toFixed(0) + " meter unna.")
       }
-      // this.setState({modalVisible: true})
   };
 
   renderMarkers(){
@@ -74,6 +80,10 @@ export class Map extends React.Component {
         />
       )
     )
+  }
+
+  hideModal() {
+      this.setState({modalVisible: false})
   }
 
   render() {
@@ -91,10 +101,10 @@ export class Map extends React.Component {
         }}
         provider={'google'}
         customMapStyle={mapStyle}
-        zoomEnabled={false}
+        //zoomEnabled={false}
         rotateEnabled={false}
-        minZoomLevel={14} //
-        maxZoomLevel={14} // 17 works fine
+        //minZoomLevel={17} //
+        maxZoomLevel={17} // 17 works fine
         showsUserLocation={true}
         scrollEnabled={false}
         moveOnMarkerPress={false}
@@ -102,13 +112,16 @@ export class Map extends React.Component {
         {this.renderMarkers()}
       </MapView>
     } else {
-      map = <View style={{flex: 1, justifyContent: 'center', textAlign: 'center'}}>
-        <Text>No gps signal</Text>
-      </View>
+        map = <View style={{flex: 1, justifyContent: 'center', textAlign: 'center'}}>
+            <Text>No gps signal</Text>
+        </View>
     }
 
     return (
-      map
+        <View style={{flex: 1}}>
+            {map}
+            <SwipeModal show={this.state.modalVisible} dismiss={this.hideModal} innercomponent={<ModalContent title={this.state.activeQuiz}/>}/>
+        </View>
     )
   }
 }
