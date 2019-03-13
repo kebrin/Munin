@@ -2,16 +2,10 @@ import React, {Component} from 'react';
 import {View, Text, Button, Alert} from 'react-native';
 
 export default class Question extends Component{
-    constructor(props) {
-        super(props);
-        this.state = {
-
-        }
-    }
 
     //Button handler, check for correct answers
     checkAnswer (a) {
-        if (a === this.props.question.a[0]){
+        if (a === this.props.question.correctAnswer){
             Alert.alert(
                 "Result",
                 "A WINNER IS YOU",
@@ -30,6 +24,27 @@ export default class Question extends Component{
         }
     }
 
+    shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+
+            const j = Math.floor(Math.random() * (i + 1));
+
+            [array[i], array[j]] = [array[j], array[i]];
+
+        }
+
+    }
+
+    renderAnswers() {
+        let shuffled = this.props.question.a
+        this.shuffleArray(shuffled)
+        return (
+            shuffled.map((answer, idx) =>
+            <Button title={answer} key={idx} onPress={()=>this.checkAnswer(answer)}/>
+        )
+        )
+    }
+
 
     render(){
         return(
@@ -38,10 +53,7 @@ export default class Question extends Component{
                     <Text>Question {this.props.question.q}:  {this.props.question.q}</Text>
                 </View>
                 <View>
-                    <Button title={this.props.question.a[0]} onPress={()=>this.checkAnswer(this.props.question.a[0])}/>
-                    <Button title={this.props.question.a[1]} onPress={()=>this.checkAnswer(this.props.question.a[1])}/>
-                    <Button title={this.props.question.a[2]} onPress={()=>this.checkAnswer(this.props.question.a[2])}/>
-                    <Button title={this.props.question.a[3]} onPress={()=>this.checkAnswer(this.props.question.a[3])}/>
+                {this.renderAnswers()}
                 </View>
             </View>
 
