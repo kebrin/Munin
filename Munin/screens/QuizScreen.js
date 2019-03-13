@@ -10,6 +10,7 @@ export default class QuizScreen extends Component {
         this.incrementScore = this.incrementScore.bind(this);
         this.state = {
             quizId: 0,
+            quiz: quizzes[this.state.quizId],
             counter: 0,
             score: 0,
             completed: false
@@ -21,14 +22,14 @@ export default class QuizScreen extends Component {
             this.setState(prevState => {
                 return {score: prevState.score + 1,
                 counter: prevState.counter + 1,
-                completed: prevState.counter + 1 === quizzes[this.state.quizId].questions.length
+                completed: prevState.counter + 1 === this.state.quiz.questions.length
                 }
             })
         } else {
             this.setState(prevState => {
                 return {
                     counter: prevState.counter + 1,
-                    completed: prevState.counter + 1 === quizzes[this.state.quizId].questions.length
+                    completed: prevState.counter + 1 === this.state.quiz.questions.length
                 }
             })
         }
@@ -36,11 +37,9 @@ export default class QuizScreen extends Component {
 
     QuizProgress(completed){
         if(completed){
-            return <EndScreen numQuestions={quizzes[this.state.quizId].questions.length} score={this.state.score}  />
+            return <EndScreen numQuestions={this.state.quiz.questions.length} score={this.state.score}  />
         }
-        console.log("Asking new question....")
-        console.log(quizzes[this.state.quizId].questions[this.state.counter])
-        return <Question incrementScore = {this.incrementScore} question = {quizzes[this.state.quizId].questions[this.state.counter]} />
+        return <Question incrementScore = {this.incrementScore} question = {this.state.quiz.questions[this.state.counter]} />
     }
 
 
@@ -53,7 +52,7 @@ export default class QuizScreen extends Component {
         return(
             <View>
                 {this.QuizProgress(this.state.completed)}
-                <Text>Score: {this.state.score}/{quizzes[this.state.quizId].questions.length}</Text>
+                <Text>Score: {this.state.score}/{this.state.quiz.questions.length}</Text>
             </View>
         );
     }
