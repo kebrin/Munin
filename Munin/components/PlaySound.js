@@ -1,6 +1,5 @@
 import { Audio } from 'expo';
 
-
 export const Sounds = {
     doiing: require('../assets/sounds/hello.wav'),
     click: require('../assets/sounds/klikk.wav'),
@@ -27,6 +26,31 @@ export const PlaySound = async (snd) =>
     {
         await SoundObject.loadAsync(snd);
         await SoundObject.playAsync();
+    }
+    catch (error)
+    {}
+}
+
+const bgMusic = new Audio.Sound();
+
+export const PlayMusic = async (snd) =>
+{
+    try
+    {
+        StopMusic();
+        await bgMusic.loadAsync(snd);
+        bgMusic.setIsLoopingAsync(true);
+        await bgMusic.playAsync();
+    }
+    catch (error)
+    {}
+}
+
+export const StopMusic = async () =>
+{
+    try
+    {
+        await bgMusic.stopAsync();
     }
     catch (error)
     {}
