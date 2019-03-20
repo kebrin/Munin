@@ -10,7 +10,8 @@ export default class EndScreen extends Component {
     render() {
         return (
             <View>
-                <Text>Quiz complete!\n Score: {this.props.score}/{this.props.numQuestions}</Text>
+                <Text>Quiz complete!</Text>
+                <Text> Score: {this.props.score}/{this.props.numQuestions}</Text>
             </View>
         )
     }

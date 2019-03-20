@@ -37,9 +37,12 @@ export default class QuizScreen extends Component {
 
     QuizProgress(completed){
         if(completed){
-            return <EndScreen numQuestions={this.quiz.questions.length} score={this.state.score}  />
+            return <View><EndScreen numQuestions={this.quiz.questions.length} score={this.state.score}  /></View>
         }
-        return <Question incrementScore = {this.incrementScore} question = {this.quiz.questions[this.state.counter]} />
+        return <View>
+                    <Question incrementScore = {this.incrementScore} question = {this.quiz.questions[this.state.counter]} />
+                    <Text>Score: {this.state.score}/{this.quiz.questions.length}</Text>
+                </View>
     }
 
 
@@ -52,7 +55,6 @@ export default class QuizScreen extends Component {
         return(
             <View>
                 {this.QuizProgress(this.state.completed)}
-                <Text>Score: {this.state.score}/{this.quiz.questions.length}</Text>
             </View>
         );
     }
