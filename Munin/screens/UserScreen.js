@@ -71,7 +71,9 @@ export default class UserScreen extends React.Component {
           dismiss={this.dismissResults}
           innercomponent={<ModalContent
             title={this.state.resultsTitle}
-            data={MockResults}/>
+            data={MockResults}
+            onclick={this.props.navigation.navigate('Kart')}
+            />
           }/>
         <SwipeModal
           show={this.state.quizzesClicked}
@@ -81,6 +83,7 @@ export default class UserScreen extends React.Component {
             data={MockQuiz}
             rev={true} //reverse the sorting for km
             dataSuffix='km'
+            onclick={this.props.navigation.navigate('Kart')}
             />
           }/>
         <View style={innerViewStyle}>

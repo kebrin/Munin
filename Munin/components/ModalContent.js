@@ -2,8 +2,10 @@ import React from 'react'
 import { ScrollView, View, Text } from 'react-native'
 import { PositionText } from './PositionText'
 import Colors from '../constants/Colors'
+import { Button } from 'react-native';
 
-export const ModalContent = ({title, data, rev=false, dataSuffix='poeng'}) => (
+export const ModalContent =
+  ({title, data, rev=false, dataSuffix='poeng', onclick}) => (
   <View style={{
     alignSelf: 'stretch',
     alignItems: 'center',
@@ -40,6 +42,7 @@ export const ModalContent = ({title, data, rev=false, dataSuffix='poeng'}) => (
               right: 0,
             }}>{metric.metric} {dataSuffix}
             </Text>
+            <Button onPress={() => onclick} title='test pls'/>
           </View>
         )
       }
