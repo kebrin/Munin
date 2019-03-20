@@ -42,7 +42,7 @@ export const ModalContent =
               right: 0,
             }}>{metric.metric} {dataSuffix}
             </Text>
-            <Button onPress={() => onclick} title='test pls'/>
+            {/* <Button onPress={() => onclick} title='test pls'/> */}
           </View>
         )
       }
