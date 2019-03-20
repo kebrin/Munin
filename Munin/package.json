@@ -18,7 +18,8 @@
     "react-navigation": "^3.0.9"
   },
   "devDependencies": {
-    "babel-preset-expo": "^5.0.0"
+    "babel-preset-expo": "^5.0.0",
+    "eslint": "^5.15.1"
   },
   "private": true
 }
