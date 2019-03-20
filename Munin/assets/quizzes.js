@@ -1,8 +1,8 @@
 export const quizzes = [
     {
         "id": 0,
-        "longitude":37.400371,
-        "latitude":25.266913,
+        "longitude":25.266913,
+        "latitude":37.400371,
         "questions": [
             {
                 "q": "Delos used to be known as \"Adelos\", because:",
@@ -53,8 +53,8 @@ export const quizzes = [
     },
     {
         "id": 1,
-        "longitude":36.357859, //endre til Irak?
-        "latitude":43.152810,
+        "longitude":43.152810, //endre til Irak?
+        "latitude":36.357859,
         "questions": [
             {
                 "q": "Assyria, was a",
@@ -105,8 +105,8 @@ export const quizzes = [
     },
     {
         "id": 2,
-        "longitude":10.401903,
-        "latitude":63.419610,
+        "longitude":10.38536,
+        "latitude":63.42889,
         "questions": [
             {
                 "q": "Når ble Gunnerus biblioteket opprettet?",
