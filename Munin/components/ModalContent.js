@@ -2,6 +2,7 @@ import React from 'react'
 import { ScrollView, View, Text } from 'react-native'
 import { PositionText } from './PositionText'
 import Colors from '../constants/Colors'
+import { list } from '../assets/styles/list';
 import { Button } from 'react-native';
 
 export const ModalContent =
@@ -25,23 +26,10 @@ export const ModalContent =
       {
         data.sort((a, b) => (a.metric > b.metric) ? (rev?1:-1) : (rev?-1:1)).map((metric, idx) =>
           <View key={idx}
-            style={{
-              flex: 1,
-              width: '100%',
-              flexDirection: 'row',
-              alignItems: 'center',
-              textAlign: 'left',
-              alignSelf: 'stretch',
-              height: 'auto',
-              fontSize: 15,
-              padding: 15,
-          }}>
-            <Text>{metric.name}</Text>
-            <Text style={{
-              position: 'absolute',
-              right: 0,
-            }}>{metric.metric} {dataSuffix}
-            </Text>
+            style={list.view}
+          >
+            <Text style={list.left}>{metric.name}</Text>
+            <Text style={list.right}>{metric.metric} {dataSuffix}</Text>
             {/* <Button onPress={() => onclick} title='test pls'/> */}
           </View>
         )
