@@ -1,5 +1,6 @@
 import React from 'react';
 import Colors from '../constants/Colors.js'
+import { list } from '../assets/styles/list'
 import {
   Image,
   Platform,
@@ -64,37 +65,16 @@ export default class HighscoreScreen extends React.Component {
         {
           this.state.scores.map((person, idx) =>
               <View key={idx}
-                    style={{
-                      flex: 1,
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      textAlign: 'left',
-                      alignSelf: 'stretch',
+                    style={[list.view, {
                       height: 'auto',
-                      fontWeight: 'bold',
-                      fontSize: 15,
                       backgroundColor: Colors.muninBeige,
                       //backgroundColor: `rgb(0,${(200-(128/this.state.scores.length)*idx)},${(40/this.state.scores.length)*idx})`,
                       marginBottom: 5,
-                      marginRight: 5,
-                      marginLeft: 5,
-                      padding: 5
-                    }}
+                    }]}
               >
-                <Text style={{
-                  fontSize: 25,
-                  marginLeft: 50
-                }}>{idx+1}.</Text>
-                <Text style={{
-                  fontSize: 25,
-                  marginLeft: 50
-                }}>{person.name}</Text>
-                <Text style={{
-                  fontSize: 25,
-                  right: 0,
-                  position: 'absolute',
-                  marginRight: 50
-                }}>{person.score} </Text>
+                  <Text style={[list.left, {width: 40}]}>{idx+1}.</Text>
+                  <Text style={{fontSize: 20}}>{person.name}</Text>
+                <Text style={list.right}>{person.score} </Text>
               </View>
           )
         }
