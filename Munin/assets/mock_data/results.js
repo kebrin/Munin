@@ -1,0 +1,17 @@
+export default [
+  {name: 'Gunnerus-quizzen', metric: 69},
+  {name: 'Gunnerus-quizzen', metric: 69},
+  {name: 'Nidaros-quizzen', metric: 1337},
+  {name: 'Fotveita-quizzen', metric: -1},
+  {name: 'Nidaros-quizzen', metric: 1337},
+  {name: 'Fotveita-quizzen', metric: -1},
+  {name: 'Gunnerus-quizzen', metric: 69},
+  {name: 'Nidaros-quizzen', metric: 1337},
+  {name: 'Fotveita-quizzen', metric: -1},
+  {name: 'Gunnerus-quizzen', metric: 69},
+  {name: 'Nidaros-quizzen', metric: 1337},
+  {name: 'Fotveita-quizzen', metric: -1},
+  {name: 'Gunnerus-quizzen', metric: 69},
+  {name: 'Nidaros-quizzen', metric: 1337},
+  {name: 'Fotveita-quizzen', metric: -1},
+]

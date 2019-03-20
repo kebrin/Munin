@@ -45,7 +45,7 @@ HighscoreStack.navigationOptions = {
 };
 
 export default createBottomTabNavigator({
-  HomeStack,
   UserStack,
+  HomeStack,
   HighscoreStack,
 });
