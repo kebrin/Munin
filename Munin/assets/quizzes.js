@@ -1,6 +1,7 @@
 export const quizzes = [
     {
         "id": 0,
+        "name": "Delos-quizen",
         "longitude":25.266913,
         "latitude":37.400371,
         "questions": [
@@ -53,6 +54,7 @@ export const quizzes = [
     },
     {
         "id": 1,
+        "name": "Irak-quizen",
         "longitude":43.152810, //endre til Irak?
         "latitude":36.357859,
         "questions": [
@@ -105,6 +107,8 @@ export const quizzes = [
     },
     {
         "id": 2,
+        "name": "Gunnerus-quizen",
+        "path": "../assets/images/gunnerus.png",
         "longitude":10.38536,
         "latitude":63.42889,
         "questions": [
