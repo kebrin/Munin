@@ -1,6 +1,5 @@
 import React from 'react'
-import { View, Text, Image, Button } from 'react-native'
-import { PositionText } from './PositionText'
+import { View, Text, Image, Button, StyleSheet } from 'react-native'
 
 export const MapModal = ({quiz, onClick}) => (
     <View style={{
@@ -10,8 +9,25 @@ export const MapModal = ({quiz, onClick}) => (
         backgroundColor: 'white',
         height: 500
     }}>
-        <PositionText top={true} text={quiz.name} />
-        <Button onPress={onClick} title={quiz.name} />
-        <PositionText top={false} text='Swipe up to close 🙃☝' />
+      <View style={styles.modalTextContainer}>
+        <Text style={styles.modalText}>{quiz.name}</Text>
+      </View>
+      <View style={styles.buttonContainer}>
+        <Button onPress={onClick} title={"Start quiz"} />
+      </View>
     </View>
 )
+
+const styles = StyleSheet.create({
+  modalText: {
+    fontSize: 20,
+    textAlign: "center"
+  },
+  modalTextContainer: {
+    flex: 4,
+    justifyContent: "space-around"
+  },
+  buttonContainer:  {
+    flex: 1
+  }
+});
