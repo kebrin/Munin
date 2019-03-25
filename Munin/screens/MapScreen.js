@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native'
 import { Map } from '../components/Map'
+import {createStackNavigator, createAppContainer} from 'react-navigation';
 
 const styles = StyleSheet.create({
   container: {
@@ -11,8 +12,6 @@ const styles = StyleSheet.create({
 })
 
 export default class MapScreen extends React.Component {
-  state = {
-  }
 
   static navigationOptions = {
     header: null,
@@ -21,7 +20,7 @@ export default class MapScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-          <Map />
+          <Map navigation={this.props.navigation}/>
       </View>
     )
   }

@@ -3,8 +3,8 @@ import { View, Text, Alert } from 'react-native'
 import { MapView, Location, Permissions } from 'expo'
 import { mapStyle } from "../assets/map-style";
 import { quizzes } from "../assets/quizzes";
-import {SwipeModal} from "./SwipeModal";
-import {ModalContent} from "./ModalContent";
+import { SwipeModal } from "./SwipeModal";
+import { MapModal } from "./MapModal";
 
 const haversine = require('haversine')
 
@@ -24,10 +24,11 @@ export class Map extends React.Component {
       activeQuiz: 0
     };
     this.hideModal = this.hideModal.bind(this);
+    this.startQuiz = this.startQuiz.bind(this);
   }
 
   componentWillMount() {
-    this._getPermission()
+    this._getPermission();
       setInterval(this._getLocationAsync, 1000)
   }
 
@@ -59,7 +60,7 @@ export class Map extends React.Component {
       console.log(this.state.location.coords)
       console.log(data.coordinate)
 
-      if (haversine(start, end, {unit: 'meter', threshold: 50})) {
+      if ((haversine(start, end, {unit: 'meter', threshold: 50}))||true) {
           // Alert.alert(data.id, data.coordinate.latitude.toString() + " " + data.coordinate.longitude.toString())
           this.setState({activeQuiz: data.id})
           this.setState({modalVisible: true})
@@ -80,6 +81,11 @@ export class Map extends React.Component {
         />
       )
     )
+  }
+
+  startQuiz() {
+      this.hideModal();
+      this.props.navigation.navigate('Quiz',  {quiz: quizzes[this.state.activeQuiz]})
   }
 
   hideModal() {
@@ -120,7 +126,14 @@ export class Map extends React.Component {
     return (
         <View style={{flex: 1}}>
             {map}
-            <SwipeModal show={this.state.modalVisible} dismiss={this.hideModal} innercomponent={<ModalContent title={this.state.activeQuiz}/>}/>
+            <SwipeModal
+                show={this.state.modalVisible}
+                dismiss={this.hideModal}
+                innercomponent={<MapModal
+                    quiz={quizzes[this.state.activeQuiz]}
+                    onClick={this.startQuiz}
+                />}
+            />
         </View>
     )
   }

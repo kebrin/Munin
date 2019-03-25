@@ -14,7 +14,8 @@ export default class QuizScreen extends Component {
             score: 0,
             completed: false
         }
-        this.quiz = quizzes[this.state.quizId]
+        //this.quiz = quizzes[this.state.quizId]
+        //this.quiz = this.props.quiz
     }
 
     incrementScore(correctAnswer){
@@ -35,11 +36,11 @@ export default class QuizScreen extends Component {
         }
     }
 
-    QuizProgress(completed){
+    QuizProgress(quiz, completed){
         if(completed){
-            return <EndScreen numQuestions={this.quiz.questions.length} score={this.state.score}  />
+            return <EndScreen numQuestions={quiz.questions.length} score={this.state.score}  />
         }
-        return <Question incrementScore = {this.incrementScore} question = {this.quiz.questions[this.state.counter]} />
+        return <Question incrementScore = {this.incrementScore} question = {quiz.questions[this.state.counter]} />
     }
 
 
@@ -49,10 +50,11 @@ export default class QuizScreen extends Component {
     }
 
     render() {
+        const quiz = this.props.navigation.getParam('quiz');
         return(
             <View>
-                {this.QuizProgress(this.state.completed)}
-                <Text>Score: {this.state.score}/{this.quiz.questions.length}</Text>
+                {this.QuizProgress(quiz, this.state.completed)}
+                <Text>Score: {this.state.score}/{quiz.questions.length}</Text>
             </View>
         );
     }

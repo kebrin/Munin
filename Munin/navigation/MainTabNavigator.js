@@ -5,11 +5,13 @@ import TabBarIcon from '../components/TabBarIcon';
 import MapScreen from '../screens/MapScreen';
 import UserScreen from '../screens/UserScreen';
 import HighscoreScreen from '../screens/HighscoreScreen';
+import QuizScreen from "../screens/QuizScreen";
 
 
 // Home screen -> Map
 const HomeStack = createStackNavigator({
   Home: MapScreen,
+    Quiz: QuizScreen
 });
 
 HomeStack.navigationOptions = {
