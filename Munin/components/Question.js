@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Colors from '../constants/Colors.js'
 import {View, Text, Alert, StyleSheet, Dimensions, Button, TouchableOpacity} from 'react-native';
 
 export default class Question extends Component{
@@ -48,7 +49,7 @@ export default class Question extends Component{
 
     render(){
         return(
-            <View>
+            <View style={styles.container}>
                 <View style={styles.question}>
                     <Text style={styles.centeredText}>{this.props.counter + 1}:  {this.props.question.q}</Text>
                 </View>
@@ -63,16 +64,16 @@ export default class Question extends Component{
 
 const styles = StyleSheet.create({
     answers: {
-        flex: 2,
+        flex: 1,
         flexDirection:'row',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
         alignItems: 'flex-start'
     },
     answer:{
-        width: Dimensions.get('window').width/2.2,
+        width: Dimensions.get('window').width/2.15,
         height: Dimensions.get('window').height/8,
-        backgroundColor: '#BBD3C3',
+        backgroundColor: Colors.muninBeige,
         margin: 5,
         justifyContent: "space-around"
     },
@@ -83,5 +84,9 @@ const styles = StyleSheet.create({
     centeredText: {
         textAlign: "center",
         fontSize: 20
-    }
+    },
+  container: {
+      backgroundColor: Colors.muninWhite,
+    flex: 1
+  }
 })
