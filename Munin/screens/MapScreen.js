@@ -1,13 +1,7 @@
 import React from 'react';
-import {
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { StyleSheet, View } from 'react-native'
+import { Map } from '../components/Map'
+import {createStackNavigator, createAppContainer} from 'react-navigation';
 
 const styles = StyleSheet.create({
   container: {
@@ -18,8 +12,6 @@ const styles = StyleSheet.create({
 })
 
 export default class MapScreen extends React.Component {
-  state = {
-  }
 
   static navigationOptions = {
     header: null,
@@ -28,9 +20,7 @@ export default class MapScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>
-          {this.state.title}
-        </Text>
+          <Map navigation={this.props.navigation}/>
       </View>
     )
   }
