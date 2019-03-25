@@ -57,9 +57,6 @@ export class Map extends React.Component {
       let data = e.nativeEvent;
       let start = this.state.location.coords;
       let end = data.coordinate;
-      console.log(this.state.location.coords)
-      console.log(data.coordinate)
-
       if ((haversine(start, end, {unit: 'meter', threshold: 50}))||true) {
           // Alert.alert(data.id, data.coordinate.latitude.toString() + " " + data.coordinate.longitude.toString())
           this.setState({activeQuiz: data.id})

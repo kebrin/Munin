@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, AsyncStorage, Alert} from 'react-native';
+import {View, Text,  StyleSheet} from 'react-native';
 import Question from "../components/Question";
 import {quizzes} from "../assets/quizzes";
 import EndScreen from "./EndScreen";
@@ -13,9 +13,8 @@ export default class QuizScreen extends Component {
             counter: 0,
             score: 0,
             completed: false
-        }
-        //this.quiz = quizzes[this.state.quizId]
-        //this.quiz = this.props.quiz
+        };
+        this.quiz = this.props.navigation.getParam('quiz')
     }
 
     incrementScore(correctAnswer){
@@ -36,11 +35,16 @@ export default class QuizScreen extends Component {
         }
     }
 
-    QuizProgress(quiz, completed){
+    QuizProgress(completed){
         if(completed){
-            return <EndScreen numQuestions={quiz.questions.length} score={this.state.score}  />
+            return <View style={styles.endScore}>
+                <EndScreen numQuestions={this.quiz.questions.length} score={this.state.score}  />
+            </View>
         }
-        return <Question incrementScore = {this.incrementScore} question = {quiz.questions[this.state.counter]} />
+        return <View>
+                    <Question counter={this.state.counter} incrementScore = {this.incrementScore} question = {this.quiz.questions[this.state.counter]} />
+                    <Text>Score: {this.state.score}/{this.quiz.questions.length}</Text>
+                </View>
     }
 
 
@@ -50,13 +54,32 @@ export default class QuizScreen extends Component {
     }
 
     render() {
-        const quiz = this.props.navigation.getParam('quiz');
+        //const quiz = this.props.navigation.getParam('quiz');
         return(
             <View>
-                {this.QuizProgress(quiz, this.state.completed)}
-                <Text>Score: {this.state.score}/{quiz.questions.length}</Text>
+                {this.QuizProgress(this.state.completed)}
+                <Text>Score: {this.state.score}/{this.quiz.questions.length}</Text>
             </View>
         );
     }
 }
+
+
+const styles = StyleSheet.create ({
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#F9F7EF'
+    },
+    endScore: {
+        flex: 1,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        alignItems: 'center',
+        color: '#F9F7EF'
+    }
+});
 

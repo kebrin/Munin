@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Button, Alert} from 'react-native';
+import {View, Text, Alert, StyleSheet, Dimensions, Button} from 'react-native';
 
 export default class Question extends Component{
 
@@ -40,7 +40,10 @@ export default class Question extends Component{
         this.shuffleArray(shuffled)
         return (
             shuffled.map((answer, idx) =>
-            <Button title={answer} key={idx} onPress={()=>this.checkAnswer(answer)}/>
+                <View style={styles.answer} key={idx} >
+                    <Button title={answer} onPress={()=>this.checkAnswer(answer)}/>
+                </View>
+
         )
         )
     }
@@ -49,10 +52,10 @@ export default class Question extends Component{
     render(){
         return(
             <View>
-                <View>
-                    <Text>Question {this.props.question.q}:  {this.props.question.q}</Text>
+                <View style={styles.question}>
+                    <Text >Question {this.props.counter + 1}:  {this.props.question.q}</Text>
                 </View>
-                <View>
+                <View style={styles.answers}>
                 {this.renderAnswers()}
                 </View>
             </View>
@@ -62,3 +65,24 @@ export default class Question extends Component{
 
 
 }
+
+const styles = StyleSheet.create({
+    answers: {
+        flex: 1,
+        flexDirection:'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start'
+    },
+    answer:{
+        marginHorizontal:5,
+        width: Dimensions.get('window').width/2.2,
+        height: Dimensions.get('window').height/8,
+        color: '#BBD3C3'
+
+    },
+    question: {
+        flex: 1,
+        justifyContent: 'center'
+    }
+})
