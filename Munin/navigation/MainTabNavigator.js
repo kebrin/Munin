@@ -6,12 +6,14 @@ import MapScreen from '../screens/MapScreen';
 import UserScreen from '../screens/UserScreen';
 import HighscoreScreen from '../screens/HighscoreScreen';
 import QuizScreen from "../screens/QuizScreen";
+import EndScreen from "../screens/EndScreen";
 
 
 // Home screen -> Map
 const HomeStack = createStackNavigator({
   Home: MapScreen,
-    Quiz: QuizScreen
+  Quiz: QuizScreen,
+  End: EndScreen
 });
 
 HomeStack.navigationOptions = {

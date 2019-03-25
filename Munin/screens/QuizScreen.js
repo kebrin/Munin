@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {View, Text,  StyleSheet} from 'react-native';
 import Question from "../components/Question";
-import {quizzes} from "../assets/quizzes";
-import EndScreen from "./EndScreen";
 
 export default class QuizScreen extends Component {
     constructor(props) {
@@ -18,33 +16,30 @@ export default class QuizScreen extends Component {
     }
 
     incrementScore(correctAnswer){
-        if(correctAnswer){
-            this.setState(prevState => {
-                return {score: prevState.score + 1,
-                counter: prevState.counter + 1,
-                completed: prevState.counter + 1 === this.quiz.questions.length
-                }
-            })
-        } else {
-            this.setState(prevState => {
-                return {
-                    counter: prevState.counter + 1,
-                    completed: prevState.counter + 1 === this.quiz.questions.length
-                }
-            })
+      if (this.state.counter === this.quiz.questions.length-1) {
+        let score = this.state.score;
+        if (correctAnswer) {
+          score++;
         }
-    }
+        this.props.navigation.navigate("End", {score: score, len: this.quiz.questions.length})
+        return
+      }
 
-    QuizProgress(completed){
-        if(completed){
-            return <View style={styles.endScore}>
-                <EndScreen numQuestions={this.quiz.questions.length} score={this.state.score}  />
-            </View>
-        }
-        return <View>
-                    <Question counter={this.state.counter} incrementScore = {this.incrementScore} question = {this.quiz.questions[this.state.counter]} />
-                    <Text>Score: {this.state.score}/{this.quiz.questions.length}</Text>
-                </View>
+      if(correctAnswer){
+          this.setState(prevState => {
+              return {score: prevState.score + 1,
+              counter: prevState.counter + 1,
+              completed: prevState.counter + 1 === this.quiz.questions.length
+              }
+          })
+      } else {
+          this.setState(prevState => {
+              return {
+                  counter: prevState.counter + 1,
+                  completed: prevState.counter + 1 === this.quiz.questions.length
+              }
+          })
+      }
     }
 
 
@@ -54,14 +49,15 @@ export default class QuizScreen extends Component {
     }
 
     render() {
-        //const quiz = this.props.navigation.getParam('quiz');
-        return(
+        return (
+          <View style={styles.container}>
             <View>
-                {this.QuizProgress(this.state.completed)}
-                <Text>Score: {this.state.score}/{this.quiz.questions.length}</Text>
+                <Question counter={this.state.counter} incrementScore={this.incrementScore}
+                          question={this.quiz.questions[this.state.counter]}/>
             </View>
+          </View>
         );
-    }
+      }
 }
 
 
@@ -71,7 +67,8 @@ const styles = StyleSheet.create ({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F9F7EF'
+        backgroundColor: '#F9F7EF',
+        paddingBottom: 30
     },
     endScore: {
         flex: 1,
