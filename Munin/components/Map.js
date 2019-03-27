@@ -29,7 +29,8 @@ export class Map extends React.Component {
 
   componentWillMount() {
     this._getPermission();
-      setInterval(this._getLocationAsync, 1000)
+    this._getLocationAsync();
+    //setInterval(this._getLocationAsync, 1000)
   }
 
   _getPermission = async () => {
@@ -109,7 +110,7 @@ export class Map extends React.Component {
         //minZoomLevel={17} //
         maxZoomLevel={17} // 17 works fine
         showsUserLocation={true}
-        scrollEnabled={false}
+        scrollEnabled={true}
         moveOnMarkerPress={false}
       >
         {this.renderMarkers()}
