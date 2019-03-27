@@ -1,4 +1,4 @@
-export const quizzes = [
+﻿export const quizzes = [
     {
         "id": 0,
         "name": "Delos-quizen",
@@ -157,6 +157,7 @@ export const quizzes = [
             "Å være grunnleggeren av Trondheim ",
             "Å vinne slaget ved Stiklestad ",
             "Å drepe Håkon jarl",
+            "Å innvie erkebiskop Olav Engelbrektsson",
           ],
           "correctAnswer": "Grunnleggeren av Trondheim"
         },
