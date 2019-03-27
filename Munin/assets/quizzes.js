@@ -154,7 +154,7 @@ export const quizzes = [
         {
           "q": "Olav Tryggvason er blant annet kjent for:",
           "a": [
-            "Å være grunnleggeren av Trondheim (riktig)",
+            "Å være grunnleggeren av Trondheim ",
             "Å vinne slaget ved Stiklestad ",
             "Å drepe Håkon jarl",
           ],
@@ -173,7 +173,7 @@ export const quizzes = [
         {
           "q": "Hva ligger bak føttene av statuen?",
           "a": [
-            "Et hode (riktig)",
+            "Et hode ",
             "Et skjold",
             "En hjelm",
             "Fuglebæsj",
@@ -183,7 +183,7 @@ export const quizzes = [
         {
           "q": "Hvem tilhører det avhugde hodet?",
           "a": [
-            "Trellen Tormod Kark",
+            "Trellen Tormod Karsk",
             "Håkon Jarl",
             "Harald Hårfagre",
             "Den norønne guden Tor"
