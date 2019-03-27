@@ -154,12 +154,12 @@
         {
           "q": "Olav Tryggvason er blant annet kjent for:",
           "a": [
-            "Å være grunnleggeren av Trondheim ",
-            "Å vinne slaget ved Stiklestad ",
+            "Å være grunnleggeren av Trondheim",
+            "Å vinne slaget ved Stiklestad",
             "Å drepe Håkon jarl",
             "Å innvie erkebiskop Olav Engelbrektsson",
           ],
-          "correctAnswer": "Grunnleggeren av Trondheim"
+          "correctAnswer": "Å være grunnleggeren av Trondheim"
         },
         {
           "q": "Hvor høy er statuen?",
@@ -174,12 +174,12 @@
         {
           "q": "Hva ligger bak føttene av statuen?",
           "a": [
-            "Et hode ",
+            "Et hode",
             "Et skjold",
             "En hjelm",
             "Fuglebæsj",
           ],
-          "correctAnswer": "Et avhugget hode"
+          "correctAnswer": "Et hode"
         },
         {
           "q": "Hvem tilhører det avhugde hodet?",
