@@ -1,4 +1,4 @@
-export const quizzes = [
+﻿export const quizzes = [
     {
         "id": 0,
         "name": "Delos-quizen",
@@ -133,4 +133,74 @@ export const quizzes = [
                 "correctAnswer": "Johan Ernst Gunnerus"
             }
         ]
-    }]
+    },
+    {
+      "id": 3,
+      "name": "Statuen på torget i Trondheim",
+      "path": "../assets/images/gunnerus.png",
+      "longitude":10.395006,
+      "latitude":63.430488,
+      "questions": [
+        {
+          "q": "Hvem er personen på statuen?",
+          "a": [
+            "Olav Tryggvason",
+            "Olav den Hellige",
+            "Harald Hårfargre",
+            "Harald Håkonson"
+          ],
+          "correctAnswer":  "Olav Tryggvason"
+        },
+        {
+          "q": "Olav Tryggvason er blant annet kjent for:",
+          "a": [
+            "Å være grunnleggeren av Trondheim",
+            "Å vinne slaget ved Stiklestad",
+            "Å drepe Håkon jarl",
+            "Å innvie erkebiskop Olav Engelbrektsson",
+          ],
+          "correctAnswer": "Å være grunnleggeren av Trondheim"
+        },
+        {
+          "q": "Hvor høy er statuen?",
+          "a": [
+            "18 meter",
+            "24 meter",
+            "13 meter",
+            "21 meter",
+          ],
+          "correctAnswer": "18 meter"
+        },
+        {
+          "q": "Hva ligger bak føttene av statuen?",
+          "a": [
+            "Et hode",
+            "Et skjold",
+            "En hjelm",
+            "Fuglebæsj",
+          ],
+          "correctAnswer": "Et hode"
+        },
+        {
+          "q": "Hvem tilhører det avhugde hodet?",
+          "a": [
+            "Trellen Tormod Karsk",
+            "Håkon Jarl",
+            "Harald Hårfagre",
+            "Den norønne guden Tor"
+          ],
+          "correctAnswer": "Den norønne guden Tor",
+        },
+        {
+          "q": "Hvordan døde Olav Tryggvason?",
+          "a": [
+            "Han falt i slaget ved Svolder",
+            "Han falt i slaget ved Stiklestad",
+            "Han ble drept av sin trell",
+            "Han døde av alderdom",
+          ],
+          "correctAnswer": "Han falt i slaget ved Svolder"
+        }
+      ]
+    }
+]
