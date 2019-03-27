@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import Colors from '../constants/Colors.js'
 import {View, Text, Alert, StyleSheet, Dimensions, Button, TouchableOpacity} from 'react-native';
+import {PlaySound, Sounds} from "./PlaySound"
 
 export default class Question extends Component{
 
     //Button handler, check for correct answers
     checkAnswer (a) {
+        PlaySound(Sounds.click);
         if (a === this.props.question.correctAnswer){
             Alert.alert(
                 "Riktig!",

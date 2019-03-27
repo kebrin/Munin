@@ -1,9 +1,14 @@
 import React, {Component} from 'react';
 import {View, Text, Button, StyleSheet} from 'react-native';
+import {PlaySound, Sounds} from "../components/PlaySound";
 
 export default class EndScreen extends Component {
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount() {
+        PlaySound(Sounds.fanfare)
     }
 
     static navigationOptions = {
