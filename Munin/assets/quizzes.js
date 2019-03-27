@@ -152,10 +152,11 @@ export const quizzes = [
           "correctAnswer":  "Olav Tryggvason"
         },
         {
-          "q": "Hva er Olav Tryggvason kjent for?",
+          "q": "Olav Tryggvason er blant annet kjent for:",
           "a": [
-              "Grunnleggeren av Trondheim",
-              "Vant slaget ved stiklestad",
+            "Å være grunnleggeren av Trondheim (riktig)",
+            "Å vinne slaget ved Stiklestad ",
+            "Å drepe Håkon jarl",
           ],
           "correctAnswer": "Grunnleggeren av Trondheim"
         },
@@ -172,9 +173,10 @@ export const quizzes = [
         {
           "q": "Hva ligger bak føttene av statuen?",
           "a": [
-            "Et avhugget hode",
+            "Et hode (riktig)",
             "Et skjold",
             "En hjelm",
+            "Fuglebæsj",
           ],
           "correctAnswer": "Et avhugget hode"
         },
